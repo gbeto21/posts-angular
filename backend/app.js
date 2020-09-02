@@ -1,9 +1,21 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const Post = require('./models/posts')
-
+const config = require('./config')
 const app = express()
+
+mongoose
+  .connect(
+    `mongodb+srv://${config.DB_USER}:${config.DB_PASSWORD}@${config.CLUSTER}.xuzor.mongodb.net/${config.DB}?retryWrites=true&w=majority`
+  ).then(() => {
+    console.log('Connected to the data base.');
+    //app.listen(config.PORT || 5000)
+  })
+  .catch(err => {
+    console.log(err);
+  })
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))

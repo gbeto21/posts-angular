@@ -44,3 +44,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#nodemon.js
+/backend/nodemon.json
+
+#config.js
+/backend/config.js
