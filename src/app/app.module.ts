@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { PostCreateComponent } from "./posts/posts-create/post-create.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { AppRoutingModule } from "./app-routing.module";
 import { HeaderComponent } from './header/header.component'
 
 @NgModule({
@@ -24,6 +24,7 @@ import { HeaderComponent } from './header/header.component'
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
