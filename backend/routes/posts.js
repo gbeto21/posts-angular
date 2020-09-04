@@ -36,17 +36,23 @@ router.post("", checkAuth, multer({ storage: storage }).single("image"), (req, r
     imagePath: url + "/images/" + req.file.filename,
     creator: req.userData.userId
   })
-  post.save().then(createdPost => {
-    res.status(201).json(
-      {
-        message: 'Post added successfully',
-        post: {
-          ...createdPost,
-          id: createdPost._id,
+  post.save()
+    .then(createdPost => {
+      res.status(201).json(
+        {
+          message: 'Post added successfully',
+          post: {
+            ...createdPost,
+            id: createdPost._id,
+          }
         }
-      }
-    )
-  })
+      )
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Creating a post failed."
+      })
+    })
 
 })
 
@@ -79,6 +85,11 @@ router.put(
           res.status(401).json({ message: "Not authorized!" })
         }
       })
+      .catch(error => {
+        res.status(500).json({
+          message: "Couldn't update post."
+        })
+      })
   })
 
 router.get('', (req, res, next) => {
@@ -106,18 +117,29 @@ router.get('', (req, res, next) => {
         maxPosts: count
       })
     })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching posts failed."
+      })
+    })
 
 })
 
 router.get("/:id", (req, res, next) => {
-  Post.findById(req.params.id).then(post => {
-    if (post) {
-      res.status(200).json(post)
-    }
-    else {
-      res.status(404).json({ message: 'Post not found.' })
-    }
-  })
+  Post.findById(req.params.id)
+    .then(post => {
+      if (post) {
+        res.status(200).json(post)
+      }
+      else {
+        res.status(404).json({ message: 'Post not found.' })
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching posts failed."
+      })
+    })
 })
 
 router.delete("/:id", checkAuth, (req, res, next) => {
@@ -129,6 +151,11 @@ router.delete("/:id", checkAuth, (req, res, next) => {
       else {
         res.status(401).json({ message: "Not authorized!" })
       }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Deleting post failed."
+      })
     })
 })
 
