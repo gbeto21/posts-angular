@@ -4,7 +4,6 @@ const router = express.Router()
 const jwt = require("jsonwebtoken")
 
 const User = require('../models/user')
-const user = require("../models/user")
 
 router.post("/signup", (req, res, next) => {
 
