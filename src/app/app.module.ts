@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppRoutingModule } from "./app-routing.module";
 import { HeaderComponent } from './header/header.component'
 import { LoginComponent } from './auth/login/login.component'
+import { SignupComponent } from './auth/signup/signup.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './auth/login/login.component'
     PostCreateComponent,
     PostListComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
