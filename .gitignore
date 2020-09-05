@@ -47,6 +47,7 @@ Thumbs.db
 
 #nodemon.js
 /backend/nodemon.json
+nodemon.json
 
 #config.js
 /backend/config.js

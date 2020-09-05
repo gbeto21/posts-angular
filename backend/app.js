@@ -5,12 +5,11 @@ const mongoose = require('mongoose')
 
 const postRoutes = require('./routes/posts')
 const userRoutes = require('./routes/user')
-const config = require('./config')
 const app = express()
 
 mongoose
   .connect(
-    `mongodb+srv://${config.DB_USER}:${config.DB_PASSWORD}@${config.CLUSTER}.xuzor.mongodb.net/${config.DB}?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.CLUSTER}.xuzor.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`
   ).then(() => {
     console.log('Connected to the data base.');
     //app.listen(config.PORT || 5000)
